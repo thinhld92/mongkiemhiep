@@ -67,8 +67,10 @@
         justify-content: center;
       }
       .nk-page-background-fixed{
-        filter: brightness(30%);
-        object-fit: cover;
+        filter: brightness(100%);
+        /* object-fit: contain; */
+        background-size: contain;
+        background-repeat: no-repeat;
       }
       .nk-social-links-2 > li > * {
         width: 40px;
@@ -78,6 +80,18 @@
         line-height: 40px;
         background-color: #fff;
         border-radius: 30px;
+      }
+
+      .nk-fullscreen-block-top a img{
+        max-width: 500px;
+      }
+
+      .nk-fullscreen-block{
+        position: relative;
+      }
+      
+      .nk-feature-1{
+        padding: 3px;
       }
 
     </style>
@@ -97,16 +111,16 @@
 
         
 <div class="nk-fullscreen-block">
-    <div class="nk-fullscreen-block-top">
+    {{-- <div class="nk-fullscreen-block-top">
         <div class="text-center">
             <div class="nk-gap-2"></div>
-            <a href="{{ route('home') }}"><img src="{{asset('frontend/assets/images/volam/logo_motthoi.png')}}" alt="GoodGames"></a>
+            <a href="{{ route('home') }}"><img src="{{asset('frontend/assets/images/volam/logo-mkh.png')}}" alt="GoodGames"></a>
             <div class="nk-gap-2"></div>
         </div>
-    </div>
+    </div> --}}
     <div class="nk-fullscreen-block-middle">
         <div class="container text-center">
-            <h1 class="h3">Coming Soon</h1>
+            {{-- <h1 class="h3">Coming Soon</h1> --}}
 
             <!--
                 START: Countdown
@@ -119,24 +133,28 @@
                     .nk-countdown-right
             -->
             {{-- <div class="nk-gap-2"></div> --}}
-            <div class="nk-countdown nk-countdown-center" 
+            {{-- <div class="nk-countdown nk-countdown-center" 
                 data-end="{{getWebsiteConfig('opening_time') ?? '2024-02-19 19:00'}}" 
                 data-timezone="Asia/Ho_Chi_Minh"
             >
-            </div>
+            </div> --}}
             {{-- <div class="nk-countdown nk-countdown-center" data-end="2024-01-19 19:00" data-timezone="Asia/Ho_Chi_Minh"></div> --}}
             <!-- END: Countdown -->
 
             <!-- START: Features -->
-        <div class="nk-gap-2"></div>
+        {{-- <div class="nk-gap-2"></div>
         <h3 class="text-main-1">KHAI MỞ MÁY CHỦ MỚI</h3>
-        <div class="nk-gap"></div>
-        <div class="row vertical-gap item-center">
+        <div class="nk-gap"></div> --}}
+        <div class="row vertical-gap item-center" style="position: absolute;
+        bottom: 2.5%;
+        width: 100%;">
+            {{-- <div class="col-lg-2"></div> --}}
+
             <div class="col-lg-2">
                 <div class="nk-feature-1">
                     <div class="nk-feature-cont">
                         <h3 class="nk-feature-title"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></h3>
-                        <h3 class="nk-feature-title text-main-1"><a href="{{ route('home') }}">Trang Chủ</a></h3>
+                        <h3 class="nk-feature-title text-main-6"><a href="{{ route('home') }}">Trang Chủ</a></h3>
                     </div>
                 </div>
             </div>
@@ -144,7 +162,7 @@
                 <div class="nk-feature-1">
                     <div class="nk-feature-cont">
                         <h3 class="nk-feature-title"><a href="{{ route('register') }}"><i class="fa-solid fa-plane"></i></a></h3>
-                        <h3 class="nk-feature-title text-main-1"><a href="{{ route('register') }}">Đăng ký</a></h3>
+                        <h3 class="nk-feature-title text-main-6"><a href="{{ route('register') }}">Đăng ký</a></h3>
                     </div>
                 </div>
             </div>
@@ -152,7 +170,7 @@
                 <div class="nk-feature-1">
                     <div class="nk-feature-cont">
                         <h3 class="nk-feature-title"><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i></a></h3>
-                        <h3 class="nk-feature-title text-main-1"><a href="{{ route('login') }}">Đăng nhập</a></h3>
+                        <h3 class="nk-feature-title text-main-6"><a href="{{ route('login') }}">Đăng nhập</a></h3>
                     </div>
                 </div>
             </div>
@@ -160,23 +178,24 @@
                 <div class="nk-feature-1">
                     <div class="nk-feature-cont">
                         <h3 class="nk-feature-title"><a href="{{getWebsiteConfig('download_link') ?? '#'}}"><i class="fa-solid fa-cloud-arrow-down"></i></a></h3>
-                        <h3 class="nk-feature-title text-main-1"><a href="{{getWebsiteConfig('download_link') ?? '#'}}">Tải game</a></h3>
+                        <h3 class="nk-feature-title text-main-6"><a href="{{getWebsiteConfig('download_link') ?? '#'}}">Tải game</a></h3>
                     </div>
                 </div>
             </div>
+            {{-- <div class="col-lg-2"></div> --}}
 
         </div>
         <!-- END: Features -->
             <div class="nk-gap-3"></div>
         </div>
     </div>
-    <div class="nk-fullscreen-block-bottom">
+    {{-- <div class="nk-fullscreen-block-bottom">
         <ul class="nk-social-links-2 nk-social-links-center">
             <li><a class="nk-social-facebook" href="#"><span class="fab fa-facebook"></span></a></li>
             <li><a class="nk-social-youtube" href="#"><span class="fab fa-youtube"></span></a></li>
         </ul>
         <div class="nk-gap-2"></div>
-    </div>
+    </div> --}}
 </div>
 
 
@@ -188,12 +207,12 @@
     
         <!-- START: Page Background -->
 
-    {{-- <div class="nk-page-background-fixed" style="background-image: url('{{asset('frontend/assets/images/bg-fixed-1.jpg')}}');"></div> --}}
+    <div class="nk-page-background-fixed" style="background-image: url('{{asset('frontend/assets/images/volam/background-mkh.png')}}');"></div>
     {{-- <div class="nk-page-background-fixed" style="background-image: url('{{asset('frontend/assets/images/volam/volam_coming.jpg')}}');"></div> --}}
-    <video class="nk-page-background-fixed" autoplay muted loop>
+    {{-- <video class="nk-page-background-fixed" autoplay muted loop>
         <source src="{{asset('frontend/assets/images/video.mp4')}}" type="video/mp4">
         <source src="{{asset('frontend/assets/images/video.webm')}}" type="video/webm">
-    </video>
+    </video> --}}
 
 <!-- END: Page Background -->
 
