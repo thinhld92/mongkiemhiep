@@ -140,8 +140,8 @@
                   <div id="boxTab" class="BlockNews">
                     <ul class="Tab">
                       <li class='Active'><a class="Tab-1" href="javscript:void(0)" rel="" title="Tin Tức"><span>Tin Tức</span></a></li>
-                      <li><a class="Tab-2" href="javscript:void(0)" rel="#" title="Hướng Dẫn"><span>Hướng Dẫn</span></a></li>
-                      <li><a class="Tab-3" href="javscript:void(0)" rel="#" title="Cộng Đồng"><span>Cộng Đồng</span></a></li>
+                      {{-- <li><a class="Tab-2" href="javscript:void(0)" rel="#" title="Hướng Dẫn"><span>Hướng Dẫn</span></a></li>
+                      <li><a class="Tab-3" href="javscript:void(0)" rel="#" title="Cộng Đồng"><span>Cộng Đồng</span></a></li> --}}
                       <li ><a class="Tab-4" href="javscript:void(0)" rel="#" title=""><span></span></a></li>
                     </ul>
                     <a class="XemThem" title="Xem thêm" href="{{route('cat_posts', 'tin-tuc')}}">Xem thêm</a>

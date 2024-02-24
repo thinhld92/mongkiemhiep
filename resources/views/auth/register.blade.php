@@ -13,7 +13,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Đăng ký - {{ config('app.name', 'Võ Lâm Tiên Kiếm') }}</title>
+    <title>Đăng ký - {{getWebsiteConfig('site_title') ?? env('APP_NAME')}}</title>
 
     <meta name="description" content="" />
 
@@ -112,7 +112,7 @@
               </a>
             </div>
             <!-- /Logo -->
-            <h3 class="mb-1">Đăng ký {{ config('app.name', 'Võ Lâm Tiên Kiếm') }} 👋</h3>
+            <h3 class="mb-1">Đăng ký {{getWebsiteConfig('site_title') ?? env('APP_NAME')}} </h3>
             {{-- <p class="mb-4">Vui lòng <strong>đăng ký</strong> để bắt đầu</p> --}}
 
             <form

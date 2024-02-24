@@ -103,8 +103,8 @@
               </a>
             </div>
             <!-- /Logo -->
-            <h3 class="mb-1">Chào bạn đến với {{ config('app.name', 'Võ Lâm Tiên Kiếm') }} 👋</h3>
-            <p class="mb-4">Vui lòng đăng nhập để được hỗ trợ</p>
+            <h3 class="mb-1">Chào bạn đến với {{getWebsiteConfig('site_title') ?? env('APP_NAME')}} 🎉🎮</h3>
+            <p class="mb-4">Vui lòng nhập vào thông tin bên dưới</p>
 
             <form
              id="formAuthentication" 

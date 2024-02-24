@@ -12,7 +12,7 @@
     <meta name="keywords" content="game, gaming, premium">
     <meta name="author" content="Promickey">
 
-    <link rel="icon" type="image/png" href="{{asset('frontend/assets/images/favicon.png')}}">
+    <link rel="icon" type="image/png" href="{{getWebsiteConfig('site_icon') ?? asset('clients/asset/images/icon.ico')}}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

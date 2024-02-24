@@ -18,8 +18,8 @@
         <div class="col-12 mb-4">
           <ul class="text-danger">
             <li><span class="text-danger">1000 VND 🚀🚀 10 xu</span></li>
-            <li><span class="text-danger"><strong>🎉Nạp lần đầu được x2 số xu🎉</strong></span></li>
-            <li><span class="text-danger">Những lần sau, trên 1 triệu được thêm 30%, trên 2 triệu được thêm 50%</span></li>
+            {{-- <li><span class="text-danger"><strong>🎉Nạp lần đầu được x2 số xu🎉</strong></span></li> --}}
+            <li><span class="text-danger">Trên 1 triệu được thêm 30%, trên 2 triệu được thêm 50%</span></li>
           </ul>
         </div>
         <div class="mb-3 col-md-6 form-password-toggle">
@@ -48,7 +48,7 @@
               step="1"
               name="coin"
               id="coin"
-              placeholder="Ex: 20,000" 
+              placeholder="Ex: 13,000" 
               value="{{old('coin')}}"
               autocomplete="off"
               readonly
