@@ -52,7 +52,7 @@ class AccountActionController extends Controller
             $cAccName = trim($habit[2]);
             $coin = (int) trim($habit[4]);
             $gamename = trim($habit[3]);
-            $coinchange = 0;
+            $coinchange = $coin;
             $ip = trim($habit[5]);
             if ($cAccName) {
                 // check có thay đổi xu và xu bị âm thì cho vào blacklist
@@ -71,16 +71,18 @@ class AccountActionController extends Controller
                     }
                 }
             }
-            $dataCreateLogHabits = [
-                "playerindex" => trim($habit[1]),
-                "cAccName" => $cAccName,
-                "gamename" => $gamename,
-                "coin" => $coin,
-                "coinchange" => $coinchange,
-                "ip" => $ip,
-                "logtime" => $logtime
-            ];
-            LogAccountHabitus::create($dataCreateLogHabits);
+            if ($coinchange != 0) {
+                $dataCreateLogHabits = [
+                    "playerindex" => trim($habit[1]),
+                    "cAccName" => $cAccName,
+                    "gamename" => $gamename,
+                    "coin" => $coin,
+                    "coinchange" => $coinchange,
+                    "ip" => $ip,
+                    "logtime" => $logtime
+                ];
+                LogAccountHabitus::create($dataCreateLogHabits);
+            }
         }
 
         // check black list Acc
