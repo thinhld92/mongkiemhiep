@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\AccountAction;
 use App\Models\LogAccountHabitus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class AccountActionController extends Controller
 {
@@ -49,15 +51,21 @@ class AccountActionController extends Controller
         foreach ($all_habits as $habit) {
             $cAccName = trim($habit[2]);
             $coin = (int) trim($habit[4]);
+            $gamename = trim($habit[3]);
             $coinchange = 0;
+            $ip = trim($habit[5]);
             if ($cAccName) {
-                $currentHabit = LogAccountHabitus::where('cAccName', $cAccName)->latest()->first();
+                // check có thay đổi xu và xu bị âm thì cho vào blacklist
+                $currentHabit = LogAccountHabitus::where('cAccName', $cAccName)->orderBy('created_at', 'desc')->first();
                 if ($currentHabit) {
                     $coinchange = $coin - $currentHabit->coin;
                     if ($currentHabit->coin >= 0 && $coin < 0) {
                         $blackAcc = [
                             "cAccName" => $cAccName,
-                            "coinChange" => $coinchange,
+                            'gamename' => $gamename,
+                            'coin'  => $coin,
+                            'coinchange' => $coinchange,
+                            "ip" => $ip,
                         ];
                         $listBlackAccount[] = $blackAcc;
                     }
@@ -66,26 +74,72 @@ class AccountActionController extends Controller
             $dataCreateLogHabits = [
                 "playerindex" => trim($habit[1]),
                 "cAccName" => $cAccName,
-                "gamename" => trim($habit[3]),
+                "gamename" => $gamename,
                 "coin" => $coin,
                 "coinchange" => $coinchange,
-                "ip" => trim($habit[5]),
+                "ip" => $ip,
                 "logtime" => $logtime
             ];
             LogAccountHabitus::create($dataCreateLogHabits);
         }
 
         // check black list Acc
-        $listWaringAcc = [];
+        // lấy ra list + tài khoản, kiểm tra
+        // cùng ip và change > 1000 hoặc thay đổi bằng tài khoản bị âm
         foreach ($listBlackAccount as $acc) {
-            $warningAcc = LogAccountHabitus::where('coinchange', abs($acc['coinChange']))
-                                    ->where('logtime', $logtime)
-                                    ->lastest()
-                                    ->first()
-                                    ;
-            $listWaringAcc[] = $warningAcc;
+            $listLogWarningAcc = LogAccountHabitus::where('logtime', $logtime)
+                                    ->where(function($query) use ($acc){
+                                        $query->where('coinchange', abs($acc['coinchange']))
+                                        ->orWhere(function($query) use ($acc){
+                                            $query->where('ip', $acc['ip'])
+                                                ->where('coinchange', '>=', 1000);
+                                        });
+                                    })
+                                    ->orderBy('created_at', 'desc')
+                                    ->get();
+
+            if ($listLogWarningAcc->count() > 0) {
+                foreach ($listLogWarningAcc as $warningAcc) {
+                    AccountAction::createOrUpdate($warningAcc); 
+                }
+            }
+
         }
-        return $listWaringAcc;
+
+        // goi thong bao den telegram
+        $listWarningAcc = AccountAction::where('status', '1')
+                        ->where('action', '0')
+                        ->get();
+        // $message = "";
+        if ($listWarningAcc->count() > 0) {
+            $message = 'Danh sách người chơi có khả năng bug xu:';
+            $i = 0;
+            foreach ($listWarningAcc as $acc) {
+                $i++;
+                $logAcc = LogAccountHabitus::where('cAccName', $acc->cAccName)->orderBy('created_at', 'desc')->first();
+                // send to telegram
+                $message = $message . PHP_EOL.$i.'. Id: ' . $acc->cAccName . ' | NV: ' . $logAcc->gamename . ' | ip: ' . $logAcc->ip . PHP_EOL . ' | Biến động: ' . $logAcc->coinchange . " | Hiện có: " .$logAcc->coin;
+                // update action
+                $acc->action = $acc->action+1;
+                $acc->update();
+            }
+            // dd($message);
+            AccountAction::sendMessageToTelegram($message);
+        }
+
+       
+        if (count($listBlackAccount) > 0) {
+            $message = 'Danh sách người chơi bị âm xu';
+            $i = 0;
+            foreach ($listBlackAccount as $acc) {
+                $i++;
+                $message = $message . PHP_EOL.$i.'. Id: ' . $acc['cAccName'] . ' | NV: ' . $acc['gamename'] . ' | ip: ' . $logAcc->ip . PHP_EOL . ' | Biến động: ' . $acc['coinchange']. " | Hiện có: " .$acc['coin'];
+            }
+            AccountAction::sendMessageToTelegram($message);
+        }
+
+        return ['status' => 200];
+
     }
 
     /**
@@ -132,4 +186,6 @@ class AccountActionController extends Controller
     {
         //
     }
+
+    
 }

@@ -17,7 +17,7 @@ class CreateLogAccountHabitusesTable extends Migration
             $table->id();
             $table->string("cAccName");
             $table->integer("playerindex")->nullable()->default(0);
-            $table->integer("gamename")->nullable();
+            $table->string("gamename")->nullable();
             $table->integer("coin")->nullable()->default(0);
             $table->integer("coinchange")->nullable();
             $table->string("ip")->nullable();

@@ -15,9 +15,10 @@ class CreateAccountActionsTable extends Migration
     {
         Schema::create('account_actions', function (Blueprint $table) {
             $table->id();
-            $table->string('cAccName');
-            $table->integer('status')->nullable()->default(0);
-            $table->tinyInteger('action')->nullable()->default(0);
+            $table->string('cAccName')->unique();
+            $table->string('count')->comment("Đếm số lần vi phạm, >2 check khoá tài khoản");
+            $table->integer('status')->nullable()->default(0)->comment("0- không cảnh báo, 1- cảnh báo");
+            $table->tinyInteger('action')->nullable()->default(0)->comment("số lần cảnh báo > 3, ngưng cảnh báo");
             $table->timestamps();
         });
     }
