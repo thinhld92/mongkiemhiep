@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AccountActionController;
+use App\Http\Controllers\Api\TopServerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('accounts')->name('users.')->group(function(){
     Route::resource('habits', AccountActionController::class);
+    Route::resource('topservers', TopServerController::class);
 });
