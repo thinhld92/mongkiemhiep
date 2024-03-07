@@ -61,7 +61,9 @@ class TopServerController extends Controller
 
         $listTopServer = TopServer::query()
                 ->select('cAccName', 'gamename', 'level', 'exp', 'expnext')
-                ->where('logtime', $logtime)
+                ->whereIn('id', function($query){
+                    $query->selectRaw('max(id)')->from('top_servers')->groupBy('cAccName');
+                })
                 ->orderBy('level', 'desc')
                 ->orderBy('exp', 'desc')
                 ->limit(10)

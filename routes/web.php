@@ -62,3 +62,5 @@ Route::get('/master', [HomeController::class, 'master'])->name('master');
 Route::get('/categories/{category:slug}', [HomeController::class, 'category'])->name('cat_posts');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/posts/{post:slug}', [HomeController::class, 'singlePost'])->name('single_post');
+
+Route::get('/test', [HomeController::class, 'test'])->name('test');

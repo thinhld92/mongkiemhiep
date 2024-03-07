@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\TopServer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -27,6 +29,13 @@ class HomeController extends Controller
             ->where('type', BannerType::HOMEPAGE)
             ->get();
         ;
+        $listTopServer = TopServer::query()
+                ->select('cAccName')->distinct()
+                ->select('gamename', 'level', 'exp', 'expnext')
+                ->orderBy('level', 'desc')
+                ->orderBy('exp', 'desc')
+                ->limit(10)
+                ->get();
         return view('clients.home', compact(
             'hotPosts',
             'hotBanners',
@@ -99,5 +108,28 @@ class HomeController extends Controller
             'title',
             'description',
         ));
+    }
+
+    public function test(){
+        // $listid = TopServer::query()->select('max(id) as id')->groupBy('cAccName');
+        $listTopServer = TopServer::query()
+                ->select('cAccName', 'gamename', 'level', 'exp', 'expnext')
+                ->whereIn('id', function($query){
+                    $query->selectRaw('max(id)')->from('top_servers')->groupBy('cAccName');
+                })
+                ->orderBy('level', 'desc')
+                ->orderBy('exp', 'desc')
+                ->limit(10)
+                ->get();
+
+
+        // $listTopServer = TopServer::query()
+        //         ->select('cAccName', 'gamename', 'level', 'exp', 'expnext')
+        //         ->orderBy('level', 'desc')
+        //         ->orderBy('exp', 'desc')
+        //         ->limit(10)
+        //         ->get();
+                
+        dd($listTopServer);
     }
 }
