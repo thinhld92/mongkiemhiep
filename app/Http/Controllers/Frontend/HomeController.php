@@ -29,13 +29,6 @@ class HomeController extends Controller
             ->where('type', BannerType::HOMEPAGE)
             ->get();
         ;
-        $listTopServer = TopServer::query()
-                ->select('cAccName')->distinct()
-                ->select('gamename', 'level', 'exp', 'expnext')
-                ->orderBy('level', 'desc')
-                ->orderBy('exp', 'desc')
-                ->limit(10)
-                ->get();
         return view('clients.home', compact(
             'hotPosts',
             'hotBanners',
