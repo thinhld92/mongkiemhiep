@@ -26,7 +26,7 @@ class UserController extends Controller
         }
         $users = $query
             ->orderBy('dRegDate', 'desc')
-            ->paginate(15);
+            ->paginate(10);
         $users->appends(['search'=> $search]);
         return view('backend.users.index', compact(
             'users',

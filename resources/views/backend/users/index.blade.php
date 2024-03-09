@@ -118,6 +118,7 @@
           <th>Account Name</th>
           <th>Real Name</th>
           <th>Email</th>
+          <th>Register Date</th>
           <th class="status">Status</th>
           <th class="actions">Actions</th>
         </tr>
@@ -131,6 +132,9 @@
             <td>{{ $user->cRealName }}</td>
             <td>
               {{ $user->cEMail }}
+            </td>
+            <td>
+              {{ $user->registerDate }}
             </td>
             <td>
               <label class="switch switch-success">
