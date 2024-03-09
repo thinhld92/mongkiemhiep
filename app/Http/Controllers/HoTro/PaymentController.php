@@ -64,7 +64,8 @@ class PaymentController extends Controller
             $payment->update();
 
             $message = 'User '.auth()->user()->cAccName." xác nhận nạp tiền ".$payment->amount." VND, hãy kiểm tra cọng xu";
-            User::sendMessageToTelegram($message);
+            $url = $_SERVER['SERVER_NAME']."/".$urlFile;
+            User::sendPhotoToTelegram($message, $url);
 
             return redirect()->route('hotro.dashboard')->with('success', 'Chờ xác nhận thanh toán');
         }

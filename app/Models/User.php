@@ -133,4 +133,15 @@ class User extends Authenticatable
         ]);
     }
 
+    public static function sendPhotoToTelegram($message, $photo){
+        $token = "6351735984:AAGQtpXHx9ZGqQHYTOOnHfMpMBE2oQaeRv4";
+        $url = "https://api.telegram.org/bot".$token."/sendPhoto";
+        $options = ['verify'=>false];
+        $response = Http::withOptions($options)->post($url, [
+            'chat_id' => '@volamkysu',
+            'photo' => $photo,
+            'caption' => $message,
+        ]);
+    }
+
 }
