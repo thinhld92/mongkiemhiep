@@ -97,7 +97,7 @@
                   <form id="form-update-{{$payment->id}}" action="{{route('admin.payments.update', $payment)}}" method="post">
                     @csrf
                     @method('put')
-                    <input type="hidden" name="status" id="payment-status" value="">
+                    <input type="hidden" name="status" id="payment-status-{{$payment->id}}" value="">
                   </form>
                 </div>
               @endif
@@ -132,8 +132,8 @@
   <script src="{{asset('backend/assets/js/forms-selects.js')}}"></script>
   <script>
     function submitFormUpdate(event, id, status) {
-      document.getElementById('payment-status').value = status;
       event.preventDefault();
+      document.getElementById('payment-status-' + id).value = status;
       document.getElementById('form-update-' + id).submit();
     }
 
