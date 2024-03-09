@@ -6,6 +6,7 @@ use App\Enums\PaymentStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaymentRequest;
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Image;
 use Illuminate\Support\Facades\File;
@@ -29,6 +30,9 @@ class PaymentController extends Controller
         $data['status'] = PaymentStatus::INIT;
         $data['cAccName'] = auth()->user()->cAccName;
         $payment = Payment::create($data);
+
+        $message = 'User '.auth()->user()->cAccName." tạo y/c nạp tiền, chờ thanh toán, xác nhận";
+        User::sendMessageToTelegram($message);
         return redirect()->route('hotro.payments.transfer', [$payment]);
     }
 
@@ -58,6 +62,9 @@ class PaymentController extends Controller
             $payment->image = $urlFile;
             $payment->status = PaymentStatus::PENDING;
             $payment->update();
+
+            $message = 'User '.auth()->user()->cAccName." xác nhận nạp tiền, hãy kiểm tra cọng xu";
+            User::sendMessageToTelegram($message);
 
             return redirect()->route('hotro.dashboard')->with('success', 'Chờ xác nhận thanh toán');
         }

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Http;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -110,7 +111,7 @@ class User extends Authenticatable
 
     public function getRegisterDateAttribute()
     {
-        $register_date = date('d/m/Y', strtotime($this->dRegDate));
+        $register_date = date('d/m/Y H:i:s', strtotime($this->dRegDate));
         return $register_date;
     }
 
@@ -120,6 +121,16 @@ class User extends Authenticatable
         . urlencode($this->cRealName)
         . '&color=7F9CF5&background=EBF4FF&size=256';
         return $avatar;
+    }
+
+    public static function sendMessageToTelegram($message){
+        $token = "6351735984:AAGQtpXHx9ZGqQHYTOOnHfMpMBE2oQaeRv4";
+        $url = "https://api.telegram.org/bot".$token."/sendMessage";
+        $options = ['verify'=>false];
+        $response = Http::withOptions($options)->post($url, [
+            'chat_id' => '@volamkysu',
+            'text' => $message,
+        ]);
     }
 
 }
