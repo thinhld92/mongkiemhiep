@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Enums\PaymentStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -67,6 +68,8 @@ class PaymentController extends Controller
             ]);
         }
         $payment->update();
+        $message = 'Hoàn thành xác nhận thanh toán cho User ' .$payment->cAccName;
+        User::sendMessageToTelegram($message);
         return redirect()->route('admin.payments.index')->with('success', 'Cập nhật thành công');
     }
 
