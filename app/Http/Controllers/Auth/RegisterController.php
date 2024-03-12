@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\AccountHabitus;
 use App\Models\Avatar;
+use App\Models\LogUser;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -111,6 +112,12 @@ class RegisterController extends Controller
             'image' => 'https://ui-avatars.com/api/?name='. urlencode($data['cRealName']). '&color=7F9CF5&background=EBF4FF&size=256',
           ];
           Avatar::create($data_avatar);
+
+          LogUser::create([
+            'type' => 1,
+            'cAccName' => $data['cAccName'],
+            'ip' => request()->ip(),
+          ]);
         }
 
         return $user;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\LogUser;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -54,6 +55,11 @@ class LoginController extends Controller
 
         if ($user) {
             $this->guard()->login($user, false);
+            LogUser::create([
+                'type' => 2,
+                'cAccName' => $request->cAccName,
+                'ip' => request()->ip(),
+            ]);
             return true;
         }
 

@@ -104,25 +104,6 @@ class HomeController extends Controller
     }
 
     public function test(){
-        // $listid = TopServer::query()->select('max(id) as id')->groupBy('cAccName');
-        $listTopServer = TopServer::query()
-                ->select('cAccName', 'gamename', 'level', 'exp', 'expnext')
-                ->whereIn('id', function($query){
-                    $query->selectRaw('max(id)')->from('top_servers')->groupBy('cAccName');
-                })
-                ->orderBy('level', 'desc')
-                ->orderBy('exp', 'desc')
-                ->limit(10)
-                ->get();
-
-
-        // $listTopServer = TopServer::query()
-        //         ->select('cAccName', 'gamename', 'level', 'exp', 'expnext')
-        //         ->orderBy('level', 'desc')
-        //         ->orderBy('exp', 'desc')
-        //         ->limit(10)
-        //         ->get();
-                
-        dd($listTopServer);
+        var_dump(request()->ip());
     }
 }
