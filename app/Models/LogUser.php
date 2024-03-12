@@ -10,6 +10,7 @@ class LogUser extends Model
     use HasFactory;
 
     protected $fillable = [
+        'type',
         'cAccName',
         'ip',
     ];
