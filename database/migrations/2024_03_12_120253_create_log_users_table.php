@@ -15,6 +15,7 @@ class CreateLogUsersTable extends Migration
     {
         Schema::create('log_users', function (Blueprint $table) {
             $table->id();
+            $table->integer('type');
             $table->string('cAccName');
             $table->string('ip');
             $table->timestamps();
