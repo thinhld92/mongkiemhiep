@@ -103,7 +103,8 @@ class RegisterController extends Controller
             'nExtPoint2' => 0,
             'dBeginDate' => now(),
             'iLeftMonth' => 0,
-            'dEndDate' => date('Y-m-d', strtotime('+2 year')),
+            // 'dEndDate' => date('Y-m-d', strtotime('+2 year')),
+            'dEndDate' => "2021-01-01",
           ];
           $account_habitus = AccountHabitus::create($data_habitus);
 
