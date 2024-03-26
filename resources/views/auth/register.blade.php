@@ -102,7 +102,8 @@
 
         <!-- Login -->
         <div class="d-flex col-12 col-lg-6 align-items-center reset-padding">
-          <div class="w-px-500 mx-auto card">
+          Tính năng tạm khoá
+          {{-- <div class="w-px-500 mx-auto card">
             <!-- Logo -->
             <div class="app-brand mb-4">
               <a href="{{ route('home') }}" class="app-brand-link gap-2">
@@ -243,7 +244,7 @@
             </p>
 
            
-          </div>
+          </div> --}}
         </div>
         <!-- /Login -->
       </div>
