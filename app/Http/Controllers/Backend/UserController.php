@@ -48,12 +48,13 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
+        $data['cAccName'] = mb_strtolower($request->cAccName);
         $data['cPassWord'] = mb_strtoupper(md5($request->cPassWord));
         $data['cSecPassword'] = mb_strtoupper(md5($request->cSecPassword));
         $user = User::create($data);
         if($user){
             $data_habitus = [
-                'cAccName' => $request->cAccName,
+                'cAccName' => mb_strtolower($request->cAccName),
                 'iFlag' => 0,
                 'iLeftSecond' => 0,
                 'nExtPoint' => 0,

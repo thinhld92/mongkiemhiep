@@ -88,7 +88,7 @@ class RegisterController extends Controller
     {
         $user = User::create([
           'cRealName' => $data['cRealName'],
-          'cAccName' => $data['cAccName'],
+          'cAccName' => mb_strtolower($data['cAccName']),
           'cEMail' => $data['cEMail'],
           'cPassWord' => mb_strtoupper(md5($data['cPassWord'])),
           'cSecPassword' => mb_strtoupper(md5($data['cSecPassword'])),
@@ -96,7 +96,7 @@ class RegisterController extends Controller
 
         if ($user) {
           $data_habitus = [
-            'cAccName' => $data['cAccName'],
+            'cAccName' => mb_strtolower($data['cAccName']),
             'iFlag' => 0,
             'iLeftSecond' => 0,
             'nExtPoint' => 0,
@@ -109,14 +109,14 @@ class RegisterController extends Controller
           $account_habitus = AccountHabitus::create($data_habitus);
 
           $data_avatar = [
-            'cAccName' => $data['cAccName'],
+            'cAccName' => mb_strtolower($data['cAccName']),
             'image' => 'https://ui-avatars.com/api/?name='. urlencode($data['cRealName']). '&color=7F9CF5&background=EBF4FF&size=256',
           ];
           Avatar::create($data_avatar);
 
           LogUser::create([
             'type' => 1,
-            'cAccName' => $data['cAccName'],
+            'cAccName' => mb_strtolower($data['cAccName']),
             'ip' => request()->ip(),
           ]);
         }

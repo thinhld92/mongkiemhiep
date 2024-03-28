@@ -60,7 +60,6 @@ GO
 
 -- insert 20 acc 1-20
 
-insert into payments
 
 insert into Account_Info (cAccName, cPassWord, cSecPassword)
 values ('1', 'C4CA4238A0B923820DCC509A6F75849B', 'C4CA4238A0B923820DCC509A6F75849B'),
@@ -269,12 +268,12 @@ values ('1', '0', '2024-01-13', '2025-01-15'),
 
 
 update Account_Habitus set nExtPoint = 2000 
-where cAccName in ('tranduy', 'manhkhai', 'gggggg', 'pplinh', 'yyyyyy3', 'quocvietz1', 'phucem1', 'bebaovd1', 
-'huy8301', 'hoach3', 'lddyvnvn', 'aaaaa1', 'nminhman', 'viethnc', 'tructruc10', 'vcoinhaem', 'anhtung2020', 'khoaspx',
-'lhk365783', 'taitam', 'ltfjx1', 'hoangsex01', 'dailam1', 'phuchuai1', 'zzzzzz', 'thoqwe2', 'hhhhhh', 'lenhutduy2','zarik0000','riopuppy',
-'caubamapz', 'hanghieu01','quan11','tryquet1','ntt156','kublach', 'spynd01vn', 'chuatehungle', 'subeo001', 'vgaming', 'lusiphong1', 'viettm',
-'hanghieu02', 'lekien', 'hoach3', 'candyngocanh1', 'quangtam1', 'phutruongthi1', 'lehang1', 'hongkiet', 'batcan2', 'anhquang79', 'ruongthui00', 'tieuquy2101'
-'shvoid', 'ngotau184', 'anhthanghocmon', 'quockiet1'
+where cAccName in ('tranduy', 'manhkhai', 'gggggg', 'pplinh', 'yyyyyy3', 'quocvietz1', 'phucem1', 'bebaovd1', 'huy8301', 'hoach3', 
+'lddyvnvn', 'aaaaa1', 'nminhman', 'viethnc', 'tructruc10', 'vcoinhaem', 'anhtung2020', 'khoaspx', 'lhk365783', 'taitam', 
+'ltfjx1', 'hoangsex01', 'dailam1', 'phuchuai1', 'zzzzzz', 'thoqwe2', 'hhhhhh', 'lenhutduy2','zarik0000','riopuppy',
+'caubamapz', 'hanghieu01','quan11','tryquet1','ntt156','kublach', 'spynd01vn', 'chuatehungle', 'subeo001', 'vgaming', 
+'lusiphong1', 'viettm', 'hanghieu02', 'lekien', 'hoach3', 'candyngocanh1', 'quangtam1', 'phutruongthi1', 'lehang1', 'hongkiet', 
+'batcan2', 'anhquang79', 'ruongthui00', 'tieuquy2101','shvoid', 'ngotau184', 'anhthanghocmon', 'quockiet1'
 );
 
 update Account_Habitus set nExtPoint = 2000 where cAccName = 'baoduong3';
@@ -356,3 +355,57 @@ values
 ('hieukhoi', 0, 4370, 7, '2024-03-26 17:00:00', '2024-03-26 17:00:00'),
 ('quockiet1', 0, 2000, 7, '2024-03-26 17:00:00', '2024-03-26 17:00:00')
 ;
+
+
+
+
+
+
+
+insert into Account_Info (cAccName, cPassWord, cSecPassword)
+values 
+('vietlinh1', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh2', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh3', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh4', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh5', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh6', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh7', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh8', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh9', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh10', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh11', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh12', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh13', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh14', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh15', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh16', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh17', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh18', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh19', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410'),
+('vietlinh20', '1E191D851B3B49A248F4EA62F6B06410', '1E191D851B3B49A248F4EA62F6B06410');
+
+
+
+insert into Account_Habitus(cAccName, iFlag, dBeginDate, dEndDate)
+values 
+('vietlinh1', '0', '2024-03-24', '2025-01-15'),
+('vietlinh2', '0', '2024-03-24', '2025-01-15'),
+('vietlinh3', '0', '2024-03-24', '2025-01-15'),
+('vietlinh4', '0', '2024-03-24', '2025-01-15'),
+('vietlinh5', '0', '2024-03-24', '2025-01-15'),
+('vietlinh6', '0', '2024-03-24', '2025-01-15'),
+('vietlinh7', '0', '2024-03-24', '2025-01-15'),
+('vietlinh8', '0', '2024-03-24', '2025-01-15'),
+('vietlinh9', '0', '2024-03-24', '2025-01-15'),
+('vietlinh10', '0', '2024-03-24', '2025-01-15'),
+('vietlinh11', '0', '2024-03-24', '2025-01-15'),
+('vietlinh12', '0', '2024-03-24', '2025-01-15'),
+('vietlinh13', '0', '2024-03-24', '2025-01-15'),
+('vietlinh14', '0', '2024-03-24', '2025-01-15'),
+('vietlinh15', '0', '2024-03-24', '2025-01-15'),
+('vietlinh16', '0', '2024-03-24', '2025-01-15'),
+('vietlinh17', '0', '2024-03-24', '2025-01-15'),
+('vietlinh18', '0', '2024-03-24', '2025-01-15'),
+('vietlinh19', '0', '2024-03-24', '2025-01-15'),
+('vietlinh20', '0', '2024-03-24', '2025-01-15');

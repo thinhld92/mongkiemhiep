@@ -28,21 +28,21 @@ class UserRequest extends FormRequest
         $validator = [
           'cRealName' => ['required', 'min:6'],
           'cEMail' => ['required', 'email', 'max:60', Rule::unique('Account_Info', 'cEMail')->ignore($this->user)],
-          'cPassWord' => ['sometimes', 'min:8', 'confirmed'],
-          'cSecPassword' => ['sometimes', 'min:8', 'confirmed'],
+          'cPassWord' => ['sometimes', 'min:6', 'confirmed'],
+          'cSecPassword' => ['sometimes', 'min:6', 'confirmed'],
           'cPhone' => ['sometimes', 'digits:10', 'nullable'],
           'cIDNum' => ['sometimes', 'digits:12', 'nullable'],
           'nExtPointPlus' => ['sometimes', 'numeric', 'nullable'],
         ];
       }else{
         $validator = [
-          'cRealName' => ['required', 'min:6'],
-          'cEMail' => ['required', 'email', 'max:60', Rule::unique('Account_Info', 'cEMail')->ignore($this->user)],
+          // 'cRealName' => ['required', 'min:6'],
+          // 'cEMail' => ['required', 'email', 'max:60', Rule::unique('Account_Info', 'cEMail')->ignore($this->user)],
           'cAccName' => ['required', 'string', 'min:5', Rule::unique('Account_Info', 'cAccName')->ignore($this->user)],
-          'cPassWord' => ['required', 'min:8', 'confirmed'],
-          'cSecPassword' => ['required', 'min:8', 'confirmed'],
-          'cPhone' => ['sometimes', 'digits:10', 'nullable'],
-          'cIDNum' => ['sometimes', 'digits:12', 'nullable'],
+          'cPassWord' => ['required', 'min:6'],
+          'cSecPassword' => ['required', 'min:6'],
+          // 'cPhone' => ['sometimes', 'digits:10', 'nullable'],
+          // 'cIDNum' => ['sometimes', 'digits:12', 'nullable'],
         ];
       }
 
