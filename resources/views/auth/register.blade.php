@@ -114,9 +114,9 @@
             <!-- /Logo -->
             <h3 class="mb-1">Đăng ký {{getWebsiteConfig('site_title') ?? env('APP_NAME')}} </h3>
             {{-- <p class="mb-4">Vui lòng <strong>đăng ký</strong> để bắt đầu</p> --}}
-            <h3 class="mb-1">Tính năng tạm khoá</h3>
+            {{-- <h3 class="mb-1">Tính năng tạm khoá</h3> --}}
 
-            {{-- <form
+            <form
              id="formAuthentication" 
              class="mb-3 {{$errors->any() ? 'was-validated custom-validate' : ''}}" 
              action="{{ route('register') }}" 
@@ -241,7 +241,7 @@
               <a href="{{ route('login') }}">
                 <span>Đăng nhập</span>
               </a>
-            </p> --}}
+            </p>
 
            
           </div>
