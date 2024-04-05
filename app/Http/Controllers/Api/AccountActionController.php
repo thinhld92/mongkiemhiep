@@ -49,11 +49,11 @@ class AccountActionController extends Controller
         $all_habits = json_decode($data['data'], true);
         $listBlackAccount = [];
         foreach ($all_habits as $habit) {
-            $cAccName = trim($habit[2]);
-            $coin = (int) trim($habit[4]);
-            $gamename = trim($habit[3]);
+            $cAccName = trim($habit[1]);
+            $coin = (int) trim($habit[3]);
+            $gamename = trim($habit[2]);
             $coinchange = $coin;
-            $ip = trim($habit[5]);
+            $ip = trim($habit[4]);
             if ($cAccName) {
                 // check có thay đổi xu và xu bị âm thì cho vào blacklist
                 $currentHabit = LogAccountHabitus::where('cAccName', $cAccName)->orderBy('created_at', 'desc')->first();
@@ -73,7 +73,7 @@ class AccountActionController extends Controller
             }
             if ($coinchange != 0) {
                 $dataCreateLogHabits = [
-                    "playerindex" => trim($habit[1]),
+                    "playerindex" => trim($habit[0]),
                     "cAccName" => $cAccName,
                     "gamename" => $gamename,
                     "coin" => $coin,

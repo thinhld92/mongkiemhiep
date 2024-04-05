@@ -36,16 +36,18 @@ class TopServerController extends Controller
      */
     public function store(Request $request)
     {
+        // return 2222;
         $data = $request->all();
         $logtime = date('Y-m-d H:i:s');
         $all_players = json_decode($data['data'], true);
+        // dd($all_players);
         foreach ($all_players as $player) {
-            $cAccName = trim($player[1]);
-            $gamename = trim($player[2]);
-            $level = trim($player[3]);
-            $exp = trim($player[4]);
-            $expnext = trim($player[5]);
-            $ip = trim($player[6]);
+            $cAccName = trim($player[0]);
+            $gamename = trim($player[1]);
+            $level = (int) trim($player[2]);
+            $exp = (int) trim($player[3]);
+            $expnext = (int) trim($player[4]);
+            $ip = trim($player[5]);
 
             $dataCreateLevelPlayer = [
                 "cAccName" => $cAccName,
